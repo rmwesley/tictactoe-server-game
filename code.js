@@ -1,7 +1,6 @@
 const n = 3;
 window.onload = init;
 
-//var game = Array(n).fill().map(() => Array(n));
 var game = [];
 function mark_x(event){
 	if(event.target.innerHTML == "&nbsp;"){
@@ -13,7 +12,8 @@ function mark_x(event){
 	}
 }
 function init(){
-	var board = document.getElementById("checkerboard");
+	var board = document.getElementById("board");
+	board.addEventListener("click", mark_x)
 
 	for (let i = 0; i < n; i++) {
 		game = game.concat([[null]]);
@@ -23,15 +23,11 @@ function init(){
 			var button = document.createElement('button');
 			button.innerHTML = "&nbsp;"
 			button.id = i + "," + j
-			button.addEventListener("click", mark_x);
 			newLine.appendChild(button);
-			newLine.innerHTML += " | ";
+			//newLine.innerHTML += " | ";
 		}
 		newLine.innerHTML += "<br>";
 		board.appendChild(newLine);
 	}
-	var button = document.querySelector("button");
-	button.addEventListener("click", mark_x);
-	//button.addEventListener("click", (event) => event.target.innerHTML = "x");
 }
 
